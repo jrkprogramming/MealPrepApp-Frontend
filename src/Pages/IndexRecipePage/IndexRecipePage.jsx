@@ -47,7 +47,7 @@ const RecipeIndexPage = () => {
           </tr>
         </thead>
         <tbody>
-          {allMeals.map((mealPrep, i) => {
+          {allMeals?.map((mealPrep, i) => {
             return (
               <tr key={i}>
                 <td>
@@ -60,7 +60,7 @@ const RecipeIndexPage = () => {
                 <td> {mealPrep.fat}g</td>
                 <td> {mealPrep.carbs}g</td>
                 <td> {mealPrep.calories} kcal</td>
-                <td> {mealPrep.owner.name} </td>
+                <td> {mealPrep.owner?.name} </td>
               </tr>
             );
           })}

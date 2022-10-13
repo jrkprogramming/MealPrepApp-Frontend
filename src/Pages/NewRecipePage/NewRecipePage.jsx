@@ -6,12 +6,18 @@ const NewRecipePage = () => {
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:9000/mealPrep/new`, formData).then((res) => {
+    axios.post(`http://localhost:9000/mealPrep`, formData).then((res) => {
       setFormData({
         mealName: "",
         image: "",
@@ -101,7 +107,7 @@ const NewRecipePage = () => {
           <button
             type="button"
             id="ingreButton"
-            onclick="AddIngredient()"
+            onClick="AddIngredient()"
             class="btn btn-primary btn-sm"
           >
             ADD ANOTHER INGREDIENT
