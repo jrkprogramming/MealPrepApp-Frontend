@@ -34,12 +34,12 @@ const DetailsRecipePage = () => {
       <ul>
         <h2>Ingredients:</h2>
         {meal?.ingredients.map((item, index) => {
-          return <li className="col-sm"> {item} </li>;
-          //   if (item == "") {
-          //     <script>meal.classNameList.add('invisible')</script>;
-          //   } else {
-          //     <li className="col-sm"> {item} </li>;
-          //   }
+          return (
+            <li key={index} className="col-sm">
+              {" "}
+              {item}{" "}
+            </li>
+          );
         })}
       </ul>
       <br></br>
@@ -47,11 +47,12 @@ const DetailsRecipePage = () => {
         <ol>
           <h2>Instructions:</h2>
           {meal?.instructions.map((item, index) => {
-            return <li className="col-sm"> {item} </li>;
-            // if (item == "") {
-            //   <script>meal.classNameList.add('invisible')</script>;
-            // } else {
-            // }
+            return (
+              <li key={index} className="col-sm">
+                {" "}
+                {item}{" "}
+              </li>
+            );
           })}
         </ol>
       </div>

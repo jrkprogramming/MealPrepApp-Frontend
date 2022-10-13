@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RecipeIndexPage from "./Pages/IndexRecipePage/IndexRecipePage";
 import DetailsRecipePage from "./Pages/DetailsRecipePage/DetailsRecipePage";
+import NewRecipePage from "./Pages/NewRecipePage/NewRecipePage";
 
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
       <Routes>
         <Route element={LoginPage} />
         <Route path="/mealPrep" element={<RecipeIndexPage />} />
+        <Route path="/mealPrep/new" element={<NewRecipePage />} />
         <Route path="/mealPrep/:id" element={<DetailsRecipePage />} />
-        <Route />
       </Routes>
     </div>
   );
