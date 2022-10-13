@@ -1,8 +1,10 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 const DetailsRecipePage = () => {
   let { id } = useParams();
+  let navigate = useNavigate();
   const [meal, setMeal] = useState();
 
   useEffect(() => {
@@ -10,6 +12,12 @@ const DetailsRecipePage = () => {
       .then((res) => res.json())
       .then((data) => setMeal(data));
   }, []);
+
+  const deleteRecipe = (id) => {
+    axios.delete(`http://localhost:9000/mealPrep/${id}`).then((res) => {
+      navigate("/mealPrep");
+    });
+  };
 
   return (
     <div className="mx-5">
@@ -67,7 +75,7 @@ const DetailsRecipePage = () => {
         <p>Total Calories: {meal?.calories} kcal</p>
       </div>
       <br></br>
-      <h6>Created By: {meal?.owner.name}</h6>
+      <h6>Created By: {meal?.owner?.name}</h6>
       <br></br>
       <br></br>
       <form action="/mealPrep/{ meal._id }" method="POST">
@@ -101,13 +109,13 @@ const DetailsRecipePage = () => {
         />
       </form>
       <br></br>
-      <form method="POST" action="/mealPrep/{ meal._id }?_method=DELETE">
-        <input
-          className="btn btn-outline-primary"
-          type="submit"
-          value="DELETE MEAL"
-        ></input>
-      </form>
+      <button
+        onClick={() => deleteRecipe(meal?._id)}
+        className="btn btn-outline-primary"
+        type="submit"
+      >
+        DELETE MEAL
+      </button>
       <br></br>
     </div>
   );
